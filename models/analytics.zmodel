@@ -1,0 +1,21 @@
+
+ import "./user.zmodel"  
+ import "./agent.zmodel"  
+ import "./conversation.zmodel"  
+
+model Analytics {
+
+    id                String        @id @default(uuid())  
+    metricName  String?          
+    metricValue  String?          
+    userId        String?          
+    user            User?            @relation(fields: [userId], references: [id], name:"user")  
+    agentId      String?          
+    agent          Agent?          @relation(fields: [agentId], references: [id], name:"agent")  
+    conversationId  String?          
+    conversation  Conversation?  @relation(fields: [conversationId], references: [id], name:"conversation")  
+
+dateCreated DateTime @default(now())
+      dateUpdated DateTime @updatedAt  @default(now())
+      @@allow("all", true)
+}

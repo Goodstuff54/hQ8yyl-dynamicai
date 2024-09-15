@@ -1,0 +1,14 @@
+
+ import "./integration.zmodel"  
+
+model Platform {
+
+    id                String        @id @default(uuid())  
+    name            String?          
+    description  String?          
+
+integrations  Integration[]  @relation("platform")  
+      dateCreated DateTime @default(now())
+      dateUpdated DateTime @updatedAt  @default(now())
+      @@allow("all", true)
+}

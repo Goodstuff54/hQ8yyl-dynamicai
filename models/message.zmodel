@@ -1,0 +1,20 @@
+
+ import "./conversation.zmodel"  
+ import "./user.zmodel"  
+ import "./agent.zmodel"  
+
+model Message {
+
+    id                String        @id @default(uuid())  
+    content      String?          
+    conversationId  String?          
+    conversation  Conversation?  @relation(fields: [conversationId], references: [id], name:"conversation")  
+    userId        String?          
+    user            User?            @relation(fields: [userId], references: [id], name:"user")  
+    agentId      String?          
+    agent          Agent?          @relation(fields: [agentId], references: [id], name:"agent")  
+
+dateCreated DateTime @default(now())
+      dateUpdated DateTime @updatedAt  @default(now())
+      @@allow("all", true)
+}

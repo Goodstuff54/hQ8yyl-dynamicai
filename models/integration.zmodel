@@ -1,0 +1,15 @@
+
+ import "./platform.zmodel"  
+
+model Integration {
+
+    id                String        @id @default(uuid())  
+    name            String?          
+    description  String?          
+    platformId  String?          
+    platform    Platform?    @relation(fields: [platformId], references: [id], name:"platform")  
+
+dateCreated DateTime @default(now())
+      dateUpdated DateTime @updatedAt  @default(now())
+      @@allow("all", true)
+}
